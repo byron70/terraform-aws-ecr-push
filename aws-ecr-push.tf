@@ -1,5 +1,5 @@
 locals {
-  path = pathexpand(path.module)
+  path = abspath(path.module)
 }
 
 # Calculate hash of the Docker image source contents
