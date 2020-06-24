@@ -1,13 +1,14 @@
-
 # Calculate hash of the Docker image source contents
-data "external" "hash" {
-  program = ["bash", "-c", format("%s/hash.sh %s", path.module, var.source_path)]
+data "archive_file" "temp" {
+  type       = "zip"
+  source_dir = var.source_path
+  output_path = format("%s/build/temp.zip", path.module)
 }
 
 # Build and push the Docker image whenever the hash changes
 resource "null_resource" "push" {
   triggers = {
-    hash = lookup(data.external.hash.result, "hash")
+    hash = data.archive_file.temp.output_base64sha256
   }
 
   provisioner "local-exec" {
