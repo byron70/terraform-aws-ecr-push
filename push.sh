@@ -11,6 +11,7 @@ temp_role=$4
 region="$(echo "$repository_url" | cut -d. -f4)"
 image_name="$(echo "$repository_url" | cut -d/ -f2)"
 
+# build docker image
 (cd "$source_path" && docker build -t "$image_name" .)
 
 # sts to push account
