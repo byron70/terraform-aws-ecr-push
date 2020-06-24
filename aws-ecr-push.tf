@@ -17,6 +17,5 @@ resource "null_resource" "push" {
 
   provisioner "local-exec" {
     command     = format("%s/push.sh %s %s %s %s", local.path, var.source_path, var.repository_url, var.tag, var.iam_push_role)
-    interpreter = ["bash", "-c"]
   }
 }
