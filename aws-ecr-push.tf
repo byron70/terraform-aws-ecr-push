@@ -20,11 +20,14 @@ resource "null_resource" "push" {
   }
 }
 
-
 output "image_name" {
   value = var.repository_url
 }
 
 output "image_tag" {
   value = var.tag
+}
+
+output "full_image_name" {
+  value = format("%s:%s", var.repository_url, var.tag)
 }
