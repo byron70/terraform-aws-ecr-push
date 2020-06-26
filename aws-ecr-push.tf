@@ -19,3 +19,12 @@ resource "null_resource" "push" {
     command     = format("%s/push.sh %s %s %s %s", local.path, var.source_path, var.repository_url, var.tag, var.iam_push_role)
   }
 }
+
+
+output "image_name" {
+  value = var.repository_url
+}
+
+output "image_tag" {
+  value = var.tag
+}
